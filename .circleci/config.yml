@@ -48,6 +48,7 @@ jobs:
       - run:
           name: Deploy to dockerhub
           command: |
+            systemctl start docker
             docker build -t tinhdh/capstone:v1.0.0 .
             docker ps -a
             docker run -p 80:3000 tinhdh/capstone:v1.0.0
@@ -302,13 +303,14 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - test-frontend:
-          requires:
-            - build-frontend
-      - deploy-dockerhub:
-          requires:
-            - test-frontend
+      # - build-frontend
+      # - test-frontend:
+      #     requires:
+      #       - build-frontend
+      - deploy-dockerhub
+      # - deploy-dockerhub:
+          # requires:
+          #   - test-frontend
       # - deploy-infrastructure:
       #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]
       #     filters:
