@@ -11,7 +11,7 @@ COPY . /app
 ## Step 3:
 # Install packages
 RUN ls -l 
-RUN npm run install 
+RUN npm install
 
 ## Step 4:
 # Expose port 3000
