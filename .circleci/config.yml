@@ -52,7 +52,8 @@ jobs:
           name: Deploy to dockerhub
           command: |
             docker build -t tinhdh/capstone:v1.0.0 .
-            docker run -it -p 80:3000 tinhdh/capstone:v1.0.0
+            docker images
+            docker run -d -p 80:3000 tinhdh/capstone:v1.0.0
             docker ps -a
             curl localhost
 
