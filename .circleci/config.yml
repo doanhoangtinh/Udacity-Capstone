@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Install package
           command: |
-            sudo apt install curl
+            echo $DOCKERHUB_USERNAME
       - run:
           name: Deploy to dockerhub
           command: |
