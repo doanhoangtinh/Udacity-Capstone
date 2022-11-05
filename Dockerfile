@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18
 
 ## Step 1:
 # Create a working directory
@@ -19,4 +19,4 @@ EXPOSE 3000
 
 ## Step 5:
 # Run container launch
-CMD [ "npm run start" ]
+CMD [ "npm", "start" ]
