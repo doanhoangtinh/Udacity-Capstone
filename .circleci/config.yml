@@ -54,6 +54,7 @@ jobs:
             docker build -t tinhdh/capstone:v1.0.0 .
             docker images
             docker run -d -p 3000:3000 tinhdh/capstone:v1.0.0
+            sleep 10
             curl localhost:3000
 
   # deploy-infrastructure:
