@@ -10,6 +10,7 @@ COPY . /app
 
 ## Step 3:
 # Install packages
+RUN ls -l 
 RUN npm run install 
 
 ## Step 4:
