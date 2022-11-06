@@ -4,11 +4,9 @@ metadata:
   name: capstone-service
   namespace: capstone
 spec:
-  type: LoadBalancer
   selector:
-    app: capstone
+    app.kubernetes.io/name: capstone
   ports:
-    - name: capstone-port
-      protocal: TCP
+    - protocol: TCP
       port: 8089
       targetPort: 3000
