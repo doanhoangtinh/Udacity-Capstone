@@ -65,9 +65,6 @@ jobs:
             mv ./kubectl /usr/local/bin/kubectl
             aws sts get-caller-identity
             aws eks update-kubeconfig --region us-west-1 --name capstone-cluster
-      - run:
-          name: Get info
-          command: |
             kubectl get nodes
 
   # configure-infrastructure:
