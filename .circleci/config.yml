@@ -69,7 +69,7 @@ jobs:
             kubectl get nodes
             kubectl apply -f ./deployment.yml
             kubectl get pods
-            kubectl apply -f ./service.yml
+            kubectl create -f ./service.yml
             kubectl get svc
 
   # configure-infrastructure:
