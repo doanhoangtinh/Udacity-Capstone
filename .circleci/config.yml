@@ -92,5 +92,9 @@ workflows:
       - test-frontend:
           requires:
             - build-frontend
-      - deploy-dockerhub
-      - deploy-infrastructure
+      - deploy-dockerhub:
+          requires:
+              - test-frontend
+      - deploy-infrastructure:
+          requires:
+              - deploy-dockerhub
