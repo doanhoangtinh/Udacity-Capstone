@@ -64,8 +64,12 @@ jobs:
             chmod +x ./kubectl
             mv ./kubectl /usr/local/bin/kubectl
             aws sts get-caller-identity
-            aws eks update-kubeconfig --region us-west-1 --name capstone-cluster
+            aws eks update-kubeconfig --region us-west-2 --name capstone-cluster
             kubectl get nodes
+            kubectl apply -f ./deployment.yml
+            kubectl get pods
+            kubectl apply -f ./service.yml
+            kubectl get svc
 
   # configure-infrastructure:
   #   docker:
