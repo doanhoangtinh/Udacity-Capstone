@@ -64,8 +64,8 @@ jobs:
             chmod +x ./kubectl
             mv ./kubectl /usr/local/bin/kubectl
             aws sts get-caller-identity
-            aws eks update-kubeconfig --region us-west-2 --name capstone-cluster
-            kubectl get nodes
+            aws eks update-kubeconfig --name capstone-cluster --region us-west-2 --role-arn arn:aws:iam::176614778603:user/capstone
+            # kubectl get nodes
             kubectl apply -f ./deployment.yml
             kubectl get pods
             kubectl apply -f ./service.yml
