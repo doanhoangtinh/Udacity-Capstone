@@ -8,6 +8,5 @@ spec:
   selector:
     app: capstone
   ports:
-    - protocal: TCP
-      port: 8089
-      targetPort: 3000
+    port: 8089
+    targetPort: 3000
