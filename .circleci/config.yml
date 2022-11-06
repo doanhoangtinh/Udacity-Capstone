@@ -57,28 +57,15 @@ jobs:
           name: Install tar utility
           command: |
             yum install -y tar gzip
+            curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+            sudo mv /tmp/eksctl /usr/local/bin
+            eksctl version
+            aws sts get-caller-identity
+            aws eks update-kubeconfig --region us-west-1 --name capstone-cluster
       - run:
-          name: Ensure frontend infrastructure exist
+          name: Get info
           command: |
-            aws cloudformation deploy \
-              --template-file .circleci/files/frontend.yml \
-              --tags project=fe-${CIRCLE_WORKFLOW_ID:0:7} \
-              --stack-name capstone-fe-${CIRCLE_WORKFLOW_ID:0:7} \
-              --parameter-overrides ID=${CIRCLE_WORKFLOW_ID:0:7}
-      - run:
-          name: Add backend IP to ansible inventory
-          command: |
-            cd .circleci/ansible
-            aws ec2 describe-instances \
-              --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --filters "Name=tag:project,Values=be-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --output text >> inventory.txt
-            cat inventory.txt
-
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project/.circleci/ansible/inventory.txt
+            kubectl get nodes
 
   # configure-infrastructure:
   #   docker:
